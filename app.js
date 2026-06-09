@@ -1,31 +1,26 @@
-function normalizeUrl(url) {
-  try {
-    return new URL(url).href;
-  } catch (e) {
-    return null;
-  }
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-function runTest() {
-  const input = document.getElementById("urlInput").value;
-  const url = normalizeUrl(input);
-
-  if (!url) {
-    document.getElementById("status").innerText = "Ungültige URL";
-    return;
-  }
-
-  const reportUrl =
-    "https://pagespeed.web.dev/report?url=" + encodeURIComponent(url);
-
-  window.open(reportUrl, "_blank");
+.container {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-function useCurrentPage() {
-  const current = window.location.href;
+input {
+  padding: 10px;
+}
 
-  const reportUrl =
-    "https://pagespeed.web.dev/report?url=" + encodeURIComponent(current);
-
-  window.open(reportUrl, "_blank");
+button {
+  padding: 10px;
+  cursor: pointer;
 }
