@@ -26,7 +26,7 @@ function runTest() {
   }
 
   const reportUrl =
-    "https://pagespeed.web.dev/report?url=" + encodeURIComponent(url);
+    "https://pagespeed.web.dev/report?url=" + encodeURIComponent(url) + "&form_factor=desktop";
 
   window.open(reportUrl, "_blank");
 }
