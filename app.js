@@ -1,26 +1,40 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #0f172a;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+function normalizeUrl(input) {
+  if (!input) return null;
+
+  let url = input.trim();
+
+  if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    url = "https://" + url;
+  }
+
+  try {
+    return new URL(url).href;
+  } catch {
+    return null;
+  }
 }
 
-.container {
-  width: 320px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+function runTest() {
+  const input = document.getElementById("urlInput");
+  const status = document.getElementById("status");
+
+  const url = normalizeUrl(input.value);
+
+  if (!url) {
+    status.innerText = "Ungültige URL";
+    return;
+  }
+
+  const reportUrl =
+    "https://pagespeed.web.dev/report?url=" + encodeURIComponent(url);
+
+  window.open(reportUrl, "_blank");
 }
 
-input {
-  padding: 10px;
-}
+function useCurrentPage() {
+  const reportUrl =
+    "https://pagespeed.web.dev/report?url=" +
+    encodeURIComponent(window.location.href);
 
-button {
-  padding: 10px;
-  cursor: pointer;
+  window.open(reportUrl, "_blank");
 }
